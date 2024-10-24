@@ -1,5 +1,7 @@
 package main
 
+import "github.com/jpcairesf/cinema/actor/router"
+
 func main() {
-	print("Hello actors and actresses!")
+	router.Initialize()
 }
