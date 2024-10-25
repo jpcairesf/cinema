@@ -2,22 +2,26 @@ package handler
 
 import "github.com/gin-gonic/gin"
 
-type ContactInput struct {
-	ActorId      int    `json:"actor_id" binding:"required"`
-	ContactType  string `json:"contact_type" binding:"required"`
-	ContactValue string `json:"contact_value" binding:"required"`
+type AddContactInput struct {
+	ActorId      int    `json:"actor_id"`
+	ContactType  string `json:"contact_type"`
+	ContactValue string `json:"contact_value"`
 }
 
-type ContactOutput struct{}
+type ContactOutput struct {
+	Id           int    `json:"id"`
+	ActorId      int    `json:"actor_id"`
+	ContactType  string `json:"contact_type"`
+	ContactValue string `json:"contact_value"`
+}
 
-func GetContactByID(c *gin.Context) {
+func GetContactsByActorID(c *gin.Context) {
 
 }
 
-func CreateContact(c *gin.Context) {
-
+func AddContactByActorID(c *gin.Context) {
+	request := AddContactInput{}
+	c.BindJSON(&request)
 }
-
-func UpdateContact(c *gin.Context) {}
 
 func DeactivateContact(c *gin.Context) {}
