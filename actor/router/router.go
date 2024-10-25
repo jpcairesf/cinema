@@ -1,6 +1,9 @@
 package router
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+	"github.com/jpcairesf/cinema/actor/handler"
+)
 
 func Initialize() {
 	r := gin.Default()
@@ -9,16 +12,16 @@ func Initialize() {
 		c.JSON(200, gin.H{"message": "pong"})
 	})
 	// Include routeGroup for actor and test
-	r.GET("/actor", func(c *gin.Context) {})
-	r.GET("/actor/{id}", func(c *gin.Context) {})
-	r.POST("/actor", func(c *gin.Context) {})
-	r.PUT("/actor", func(c *gin.Context) {})
-	r.DELETE("/actor/{id}", func(c *gin.Context) {})
+	r.GET("/actor", handler.GetActors)
+	r.GET("/actor/{id}", handler.GetActorByID)
+	r.POST("/actor", handler.CreateActor)
+	r.PUT("/actor", handler.UpdateActor)
+	r.DELETE("/actor/{id}", handler.DeleteActor)
 	// Include routeGroup for actor/{id}/contact and test
 	r.GET("/actor/{id}/contact", func(c *gin.Context) {})
 	r.POST("/actor/{id}/contact", func(c *gin.Context) {})
 	r.PUT("/actor/{id}/contact", func(c *gin.Context) {})
-	r.DELETE("/actor/{id}/contact/{id}", func(c *gin.Context) {})
+	r.PATCH("/actor/{id}/contact", func(c *gin.Context) {})
 
 	err := r.Run(":8080")
 	if err != nil {
