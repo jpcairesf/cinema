@@ -9,3 +9,8 @@ var (
 func Initialize() error {
 	return nil
 }
+
+func GetLogger() *Logger {
+	logger = newLogger()
+	return logger
+}
